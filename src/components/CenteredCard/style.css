@@ -1,0 +1,69 @@
+:root {
+  --neon: hsl(317 100% 54%);
+  --background: hsl(323 21% 16%);
+}
+
+.card {
+  margin: 5rem;
+  padding: 2em;
+  border-radius: 0.25em;
+  border: var(--neon) 0.175em solid;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+
+  font-family: "Press Start 2P", cursive;
+  line-height: 1.5em;
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.35), 0 0 0.25em currentColor;
+
+  box-shadow: inset 0 0 0.5em 0 var(--neon), 0 0 0.5em 0 var(--neon);
+
+  position: relative;
+}
+
+.card::before {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  background-color: var(--neon);
+  top: 115%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  transform: perspective(1em) rotateX(30deg) scale(1, 0.35);
+  filter: blur(4em);
+  opacity: 0.7;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: inset 0 0 3em 1em hsl(317 100% 54%), 0 0 3em 1em hsl(317 100% 54%);
+  z-index: -1;
+  transition: opacity 100ms linear;
+}
+
+.card:focus,
+.card:hover {
+  background-color: var(--neon);
+  color: var(--background);
+  box-shadow: inset 0 0 3em 1em hsl(317 100% 54%), 0 0 3em 1em hsl(317 100% 54%);
+  text-shadow: none;
+}
+
+.card:focus::after,
+.card:hover::after {
+  opacity: 1;
+}
+.card:focus::before,
+.card:hover::before {
+  opacity: 1;
+}
